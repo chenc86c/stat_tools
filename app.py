@@ -105,7 +105,7 @@ if uploaded_file:
                         reason = "数据正态但方差不齐，需使用修正的 t 检验。"
                         res_calc = stats.ttest_ind(group_data[0], group_data[1], equal_var=False)
                 
-                else: (n_groups >= 3)
+                elif n_groups >= 3:
                     if not is_normal:
                         method = "Kruskal-Wallis H 检验"
                         reason = "多组数据且非正态，使用非参数 ANOVA。"
@@ -133,4 +133,5 @@ if uploaded_file:
                             st.write("🔵 **结论：组间无显著差异**")
 
     except Exception as e:
+
         st.error(f"读取文件出错，请确保没有上传空文件或格式错误。\n错误信息: {e}")
